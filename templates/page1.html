@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/forpage1.css' %}" />
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.4.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+
+        <div class="showTime">
+        <script>
+          var t = null;
+          t = setTimeout(time, 1000); //開始运行
+          function time() {
+            clearTimeout(t); //清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours(); //获取时
+            var m = dt.getMinutes(); //获取分
+            var s = dt.getSeconds(); //获取秒
+            document.querySelector(".showTime").innerHTML =
+              "当前时间：" +
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "-" +
+              h +
+              "时" +
+              m +
+              "分" +
+              s +
+              "秒";
+            t = setTimeout(time, 1000); //设定定时器，循环运行
+          }
+        </script></div>
+      </header>
+    <ul>
+       <li><a href="/home/">返回首页</a></li>
+        <li><a class="active">预定单</a></li>
+        <table class="table table-striped" id="pstable" style="color: white">
+             <thead>
+               <tr>
+                 <th>预约号</th>
+
+                   <th>预约计划</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for item in views_list %}
+               <tr>
+
+                 <td>{{ item.reservationid}}</td>
+               <td>预定{{item.reservationtime}}从{{item.startingpoint}}出发到{{item.endingpoint}}</td>
+
+               </tr>
+               {% endfor %}
+             </tbody>
+     </table>
+        <li><a href="/home/">返回</a></li>
+    </ul>
+ <div class="column side">
+    <h2 style="color: rgb(255, 255, 255);">撮合拼车订单列表</h2>
+   <p style="color: rgb(255, 255, 255);">排列订单信息</p>
+     {% for item_2 in result_list %}
+         <p style="color: rgb(255, 255, 255);">分组:</p>
+         {% for item_3 in item_2 %}
+    <p style="color: rgb(255, 255, 255);">订单号：{{ item_3}}</p>
+             {% endfor %}
+     {% endfor %}
+
+  </div>
+  <div class="column middle">
+    <h2 style="color: rgb(255, 255, 255);">实时调度服务</h2>
+    <p style="color: rgb(255, 255, 255);">使用算法自动调度车辆，便捷乘客出行！</p>
+
+      <p style="color: rgb(255, 255, 255);">请输入要查找的分组序号</p>
+      <input type="text" id ='d1'>
+         <p style="color: rgb(255, 255, 255);"><button id="btn">查找</button></p>
+          <div style="background-image: url({% static "img/prediction/yuan.jpg"%})  ;
+              background-repeat:  no-repeat;
+              background-size:500px 450px;
+              ">
+           <img id="d3"
+            width="500"
+            height="450"
+            src=""/>
+          </div>
+  </div>
+
+
+<!--
+
+<nav class="div0"></nav>
+    <ul>
+        <li><a href="#"><button id="test">6:00-7:00</button></a></li>
+        <li><a href="#"><button id="test1">7:00-7:00</button></a></li>
+        <li><a href="#"><button id="test2">8:00-7:00</button></a></li>
+    </ul>
+-->
+
+   <div></div>
+{% csrf_token %}
+<script>
+    $('#btn').click(function () {
+		var csrf = $('input[name="csrfmiddlewaretoken"]').val();  //增加csrf变量将在data中传参以避免403错误
+        // 朝后端发送ajax请求
+        $.ajax({
+            // 1.指定朝哪个后端发送ajax请求
+            url:'', //不写就是朝当前地址提交【与form表单的action参数相同】
+            // 2.请求方式
+            type:'post',  // 不指定默认就是get，都是小写
+            // 3.数据
+            data:{'d1':$('#d1').val(),'csrfmiddlewaretoken': csrf},
+            // 4.回调函数:当后端返回结果的时候会自动触发，args接受后端的返回结果
+            success:function (args) {
+                $('#d3').attr('src', args);
+            }
+        })
+    })
+</script>
+
+  </body>
+</html>

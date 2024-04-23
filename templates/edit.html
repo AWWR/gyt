@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index_for_manager.css' %}" />
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.4.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+
+        <div class="showTime">
+        <script>
+          var t = null;
+          t = setTimeout(time, 1000); //開始运行
+          function time() {
+            clearTimeout(t); //清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours(); //获取时
+            var m = dt.getMinutes(); //获取分
+            var s = dt.getSeconds(); //获取秒
+            document.querySelector(".showTime").innerHTML =
+              "当前时间：" +
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "-" +
+              h +
+              "时" +
+              m +
+              "分" +
+              s +
+              "秒";
+            t = setTimeout(time, 1000); //设定定时器，循环运行
+          }
+        </script></div>
+      </header>
+    <ul>
+        <li><a  href="/manager/">返回</a></li>
+        <li><a href="/add/">增加信息</a></li>
+        <li><a href="/delete/">删除信息</a></li>
+        <li><a class="active" href="/edit/">修改信息</a></li>
+        <li><a href="/search/">查询信息</a></li>
+    </ul>
+
+  <div style="margin-left:35%;width: 60%;height:100%">
+    <h2 style="color: rgb(255, 255, 255);">修改数据</h2>
+    <p style="color: rgb(255, 255, 255);">逐项编辑表中数据</p>
+       <section>
+        <form action="/edit2/" method="get">
+            <input placeholder="请输入表名" name="SL_id">
+            </br>
+            <input placeholder="修改的ID" name="S_id">
+            </br>
+            <input placeholder="修改的属性名" name="state">
+            </br>
+            <input placeholder="修改的数据" name="state">
+            </br>
+            <input type="submit" value="确定">
+        </form>
+
+     </section>
+
+      </div>
+  </div>
+
+  </body>
+</html>

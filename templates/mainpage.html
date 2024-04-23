@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/index1846.css' %}" />
+  </head>
+
+  <body>
+    <header>
+        <a href="/login/" style="color: white;position: absolute;
+  top: 0;
+  left: 0.375rem;
+  line-height: 0.9375rem;
+  font-size: 0.25rem;">返回</a>
+      <h1>智慧出行系统</h1>
+      <div class="showTime">
+      <script>
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+            "当前时间：" +
+            y +
+            "年" +
+            mt +
+            "月" +
+            day +
+            "-" +
+            h +
+            "时" +
+            m +
+            "分" +
+            s +
+            "秒";
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      </script></div>
+    </header>
+
+
+    <section class="mainbox">
+      <div class="column">
+        <div class="panel bar">
+          <h2>
+            2022年月均出行人数
+          </h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel line">
+          <h2>日间与夜间出行人数趋势变化</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie">
+          <h2>各时段出行活跃用户比例</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="no">
+          <div class="no-hd">
+            <ul>
+              <a href="/page1/"  style = "text-decoration: none;">实时调度</a>
+             <a href="/page2/"  style = "text-decoration: none;">调度预测</a>
+            </ul>
+          </div>
+          <div class="no-bd">
+            <ul>
+              <li>现有活跃用户：390,773 </li>
+              <li>现有可调度车辆：9,332</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="map">
+          <!-- <div class="chart"></div> -->
+          <div class="map1"></div>
+          <div class="map2"></div>
+          <div class="map3"></div>
+        </div></a>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="panel bar1">
+          <h2>各行政区拼车成功率</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel line1">
+          <h2>平台订单类型变化趋势</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie1">
+          <h2>各行政区可调度车辆比例</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/flexible.js' %}"></script>
+    <script src="{% static '/js/jquery.js'%}"></script>
+    <script src="{% static '/js/echarts.min.js'%}"></script>
+    <script src="{% static '/js/index.js' %}"></script>
+    <script src="{% static '/js/china.js' %}"></script>
+    <script src="{% static '/js/myMap.js' %}"></script>
+  </body>
+</html>
